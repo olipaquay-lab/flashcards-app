@@ -15,6 +15,7 @@ export default function App() {
   const [flipped, setFlipped] = useState(false);
   const [good, setGood] = useState(0);
   const [bad, setBad] = useState(0);
+  const [showHelp, setShowHelp] = useState(true);
 
   const filteredDeck = useMemo(() => {
     return mode === "mix"
@@ -63,6 +64,32 @@ export default function App() {
 
   return (
     <div className="app">
+      {showHelp && (
+        <div className="modal-overlay">
+          <div className="modal">
+
+            <h2>🩺 Bienvenue</h2>
+
+            <p>
+              Cliquez sur une carte pour révéler la réponse.
+            </p>
+
+            <ul>
+              <li>✔ "Je savais" = carte maîtrisée</li>
+              <li>❌ "Je ne savais pas" = la carte reviendra plus souvent</li>
+              <li>🔀 Choisissez un mode en haut</li>
+            </ul>
+
+            <button
+              className="start-btn"
+              onClick={() => setShowHelp(false)}
+            >
+              Commencer
+            </button>
+
+          </div>
+        </div>
+      )}
 
       <header className="header">
         <h1>🩺 Flashcards médicales</h1>
